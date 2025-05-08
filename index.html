@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Birthday</title>
   <style>
     body {
@@ -86,14 +86,15 @@
       justify-content: center;
       gap: 20px;
       margin-top: 2rem;
-      display: none;
       opacity: 0;
+      visibility: hidden;
       transform: translateX(-100%);
-      animation: slideIn 1s ease-out forwards;
+      transition: opacity 1s ease, transform 1s ease;
     }
-    @keyframes slideIn {
-      from { transform: translateX(-100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+    .gallery.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
     }
     .gallery figure {
       display: flex;
@@ -120,11 +121,6 @@
       color: #333;
       font-weight: bold;
       margin-top: 10px;
-      text-align: center;
-    }
-    .video-container {
-      width: 350px;
-      margin: 0 auto;
       text-align: center;
     }
     .see-more-btn {
@@ -165,26 +161,18 @@
         width: 250px;
         height: 250px;
       }
-      .video-container {
-        width: 250px;
-      }
     }
     @media (max-width: 480px) {
       .gallery img, .gallery video, .gallery iframe {
         width: 180px;
         height: 180px;
       }
-      .video-container {
-        width: 180px;
-      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  ❤️ Love & Memories ❤️
-</header>
+<header>❤️ Love & Memories ❤️</header>
 
 <div class="content">
   <p style="font-size: 1.3rem; color: #cc0066;">
@@ -218,40 +206,44 @@
       <figcaption>Random Moment of Joy 😄</figcaption>
     </figure>
 
-    <!-- Drive Video as iframe -->
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/1yQ17NFsoWF2_CGYU1uuxog0Sci2-uz8B/preview" allow="autoplay" allowfullscreen></iframe>
+    <!-- Google Drive video -->
+    <figure>
+      <iframe 
+        src="https://drive.google.com/file/d/1yQ17NFsoWF2_CGYU1uuxog0Sci2-uz8B/preview"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
       <figcaption>Love Story 1 🎥</figcaption>
-    </div>
+    </figure>
 
-    <!-- Local Videos -->
-    <div class="video-container">
-      <video controls>
-        <source src="videos/romantic_walk.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <figcaption>Romantic Walk Video 🏞️</figcaption>
-    </div>
-    <div class="video-container">
-      <video controls>
-        <source src="videos/sunset_view.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <!-- Local videos -->
+    <figure>
+      <iframe 
+        src="https://drive.google.com/file/d/1b596cRTNYQ4NayDBz6MEyqFp1J4Tykb_/preview"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+      <figcaption>Romantic Walk drive</figcaption>
+    </figure>
+
+    <figure>
+      <iframe 
+        src="https://drive.google.com/file/d/1-9NvokU08GRi6IIG5olJ3SoqLS2XcDax/preview"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
       <figcaption>Sunset View Video 🌅</figcaption>
-    </div>
-
+    </figure>
   </div>
 </div>
 
 <footer>
-  Made with 💖 for beautiful souls
+  Made with LOVE 💖💘
 </footer>
 
 <script>
 function showGallery() {
-  const gallery = document.getElementById('gallery');
-  gallery.style.display = 'flex';
-  gallery.style.animation = 'slideIn 1s ease-out forwards';
+  document.getElementById('gallery').classList.add('show');
   document.querySelector('.see-more-btn').style.display = 'none';
 }
 </script>
