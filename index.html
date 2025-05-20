@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Birthday</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -32,6 +34,7 @@
       text-align: center;
       color: #000;
       font-size: 3rem;
+      font-family: 'Great Vibes', cursive;
       font-weight: bold;
       letter-spacing: 3px;
       animation: fadeIn 2s ease-out;
@@ -113,17 +116,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0;
     }
 
     figure img,
     figure iframe {
-      width: 350px;
-      height: 350px;
-      object-fit: cover;
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background-color: white;
       border: 5px solid black;
       border-radius: 20px;
-      background: white;
       transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s, filter 0.4s;
+      padding: 5px;
+      cursor: pointer;
     }
 
     figure img:hover,
@@ -142,7 +150,8 @@
       text-align: center;
     }
 
-    .see-more-btn {
+    .see-more-btn,
+    .play-song-btn {
       display: inline-block;
       margin-top: 2rem;
       padding: 0.8rem 2rem;
@@ -156,6 +165,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       animation: glow 2s infinite alternate;
+      margin-right: 10px;
     }
 
     @keyframes glow {
@@ -163,7 +173,8 @@
       to { box-shadow: 0 0 10px #ff3399, 0 0 20px #ff3399, 0 0 30px #ff3399; }
     }
 
-    .see-more-btn:hover {
+    .see-more-btn:hover,
+    .play-song-btn:hover {
       transform: translateY(-5px) scale(1.05);
       background: linear-gradient(90deg, #cc0066, #99004d);
     }
@@ -177,6 +188,31 @@
       width: 90%;
       text-align: center;
       margin-bottom: 10px;
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 15px;
+      border: 5px solid white;
+    }
+
+    .lightbox.show {
+      display: flex;
     }
 
     @media (max-width: 768px) {
@@ -204,55 +240,42 @@
 
 <div class="content">
   <p style="font-size: 1.3rem; color: #cc0066;">
-    I know I can be dumb sometimes… don’t understand half the things you say, don’t always know how to react, and end up staying silent when I should probably speak. But somehow, you still manage to understand me without needing any words, and that’s something I truly love about you. I know I’m a pain in the ass, I irritate you, poke you, and act like a complete goof. But I promise, I never do it to make you angry. I do it just to see you smile, to hear you laugh, and to bring a little bit of lightness to your day. You have become my favorite person to annoy. I can’t wait to keep making memories like this with you, birthday after birthday, year after year. Happiest birthday, Mehek. You make life better just by being in it 🐠😘 
+    Happy Birthday, Mehek ❤️<br>
+I know I can be dumb sometimes… don’t understand half the things you say, don’t always know how to react, and end up staying silent when I should probably speak. But somehow, you still manage to understand me without needing any words, and that’s something I truly love about you. I know I’m a pain in the ass, I irritate you, poke you, and act like a complete goof. But I promise, I never do it to make you angry. I do it just to see you smile, to hear you laugh, and to bring a little bit of lightness to your day. You have become my favorite person to annoy. I can’t wait to keep making memories like this with you, birthday after birthday, year after year. Happiest birthday, Mehek. You make life better just by being in it 🐠😘
   </p>
 
+  <button class="play-song-btn" onclick="toggleSong()">Play/Pause Song 🎵</button>
   <a href="#" class="see-more-btn" onclick="showGallery()">Our Memories ❤️</a>
 
   <div class="divider"></div>
 
   <div class="gallery" id="gallery">
-    <figure>
-      <img src="images/20240720_180428.jpg" alt="Love 1" />
-      <figcaption>First Moment of Love ❤️</figcaption>
-    </figure>
-    <figure>
-      <img src="images/20241225_214429.jpg" alt="Love 2" />
-      <figcaption>Holiday Memories 💖</figcaption>
-    </figure>
-    <figure>
-      <img src="images/IMG_20250208_223130_510.jpg" alt="Love 3" />
-      <figcaption>Magical Sunset 🌅</figcaption>
-    </figure>
-    <figure>
-      <img src="images/20250102_184629.jpg" alt="Love 4" />
-      <figcaption>New Year's Eve Celebration 🎉</figcaption>
-    </figure>
-    <figure>
-      <img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/20241223_202433.jpg" alt="Love 5" />
-      <figcaption>Random Moment of Joy 😄</figcaption>
-    </figure>
-
-    <figure>
-      <iframe src="https://drive.google.com/file/d/1yQ17NFsoWF2_CGYU1uuxog0Sci2-uz8B/preview" allow="autoplay" allowfullscreen></iframe>
-      <figcaption>Love Story 1 🎥</figcaption>
-    </figure>
-
-    <figure>
-      <iframe src="https://drive.google.com/file/d/1b596cRTNYQ4NayDBz6MEyqFp1J4Tykb_/preview" allow="autoplay" allowfullscreen></iframe>
-      <figcaption>Romantic Walk Video 🏞️</figcaption>
-    </figure>
-
-    <figure>
-      <iframe src="https://drive.google.com/file/d/1iXYu5trSlG-cR-Jzu_zJxahm-ZoB_hnT/preview" allow="autoplay" allowfullscreen></iframe>
-      <figcaption>Sunset View🌆</figcaption>
-    </figure>
+    <figure><img src="images/20240720_180428.jpg" alt="Love 1" /><figcaption>First Moment of Love ❤️</figcaption></figure>
+    <figure><img src="images/20241225_214429.jpg" alt="Love 2" /><figcaption>Holiday Memories 💖</figcaption></figure>
+    <figure><img src="images/You make ordinary moments feel magicla.jpg" alt="Love 3" /><figcaption>Magical Drive</figcaption></figure>
+    <figure><img src="images/20250102_184629.jpg" alt="Love 4" /><figcaption>The deep and emo talk🥺🥺</figcaption></figure>
+    <figure><img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/20241223_202433.jpg" alt="Love 5" /><figcaption>The Random Propsal 😄</figcaption></figure>
+    <figure><iframe src="https://drive.google.com/file/d/1yQ17NFsoWF2_CGYU1uuxog0Sci2-uz8B/preview" allow="autoplay" allowfullscreen></iframe><figcaption>The Love🎥</figcaption></figure>
+    <figure><iframe src="https://drive.google.com/file/d/1b596cRTNYQ4NayDBz6MEyqFp1J4Tykb_/preview" allow="autoplay" allowfullscreen></iframe><figcaption>The Cutee Drive😘😘</figcaption></figure>
+    <figure><iframe src="https://drive.google.com/file/d/1iXYu5trSlG-cR-Jzu_zJxahm-ZoB_hnT/preview" allow="autoplay" allowfullscreen></iframe><figcaption>The Food Date😋😋</figcaption></figure>
+    <figure><img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/Snapchat-699975617.jpg" alt="Love 6" /><figcaption>The Growels Date🤗🤗</figcaption></figure>
+    <figure><img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/Snapchat-178785109.jpg" alt="Love 7" /><figcaption>When We realized our love for each other</figcaption></figure>
+    <figure><img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/Snapchat-216081378.jpg" alt="Love 8" /><figcaption>OMGGG this day🥰</figcaption></figure>
+    <figure><img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/Snapchat-1774837327.jpg" alt="Love 9" /><figcaption>Video Call Datee🤪</figcaption></figure>
+    <figure><img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/20241222_204121.jpg" alt="Love 10" /><figcaption>The first time i got to know u have been through alot🥺</figcaption></figure>
+    <figure><img src="https://raw.githubusercontent.com/VanshMt/LOVE/refs/heads/main/20240720_180428.jpg" alt="Love 13" /><figcaption>We are Forever & Always Goofyy💞</figcaption></figure>
   </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
+  <img src="" id="lightbox-img" alt="Zoomed view" />
 </div>
 
 <footer>
   Made with 💖 Love For You
 </footer>
+
+<audio id="bg-music" src="Jhol.mp3" loop></audio>
 
 <script>
 function showGallery() {
@@ -260,6 +283,26 @@ function showGallery() {
   gallery.classList.add('show');
   document.querySelector('.see-more-btn').style.display = 'none';
 }
+
+function toggleSong() {
+  const music = document.getElementById('bg-music');
+  if (music.paused) {
+    music.play();
+  } else {
+    music.pause();
+  }
+}
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+document.querySelectorAll('.gallery img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add('show');
+  });
+});
 </script>
 
 </body>
